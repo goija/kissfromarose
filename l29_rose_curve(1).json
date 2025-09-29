@@ -1,0 +1,53 @@
+{
+  "type": "scatter",
+  "data": {
+    "datasets": [{
+      "label": "r(θ) = sin(29θ) for L_29",
+      "data": [
+        {
+          "x": 0,
+          "y": 0,
+          "r": 0
+        }
+      ],
+      "backgroundColor": "rgba(75, 192, 192, 0.8)",
+      "borderColor": "rgba(75, 192, 192, 1)",
+      "borderWidth": 1,
+      "pointRadius": 2
+    }]
+  },
+  "options": {
+    "scales": {
+      "r": {
+        "angleLines": {
+          "display": true,
+          "color": "rgba(0, 0, 0, 0.2)"
+        },
+        "grid": {
+          "color": "rgba(0, 0, 0, 0.2)"
+        },
+        "pointLabels": {
+          "display": true
+        },
+        "min": -1,
+        "max": 1
+      }
+    },
+    "plugins": {
+      "legend": {
+        "display": true
+      },
+      "tooltip": {
+        "enabled": true
+      }
+    }
+  },
+  "dynamicData": {
+    "generate": {
+      "thetaStart": 0,
+      "thetaEnd": 6.28318530718,
+      "steps": 1000,
+      "rFunction": "Math.sin(29 * theta)"
+    }
+  }
+}

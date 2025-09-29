@@ -1,0 +1,53 @@
+{
+  "type": "scatter",
+  "data": {
+    "datasets": [{
+      "label": "r(θ) = sin(5702887θ) for F_34",
+      "data": [
+        {
+          "x": 0,
+          "y": 0,
+          "r": 0
+        }
+      ],
+      "backgroundColor": "rgba(255, 99, 132, 0.8)",
+      "borderColor": "rgba(255, 99, 132, 1)",
+      "borderWidth": 1,
+      "pointRadius": 1
+    }]
+  },
+  "options": {
+    "scales": {
+      "r": {
+        "angleLines": {
+          "display": true,
+          "color": "rgba(0, 0, 0, 0.2)"
+        },
+        "grid": {
+          "color": "rgba(0, 0, 0, 0.2)"
+        },
+        "pointLabels": {
+          "display": true
+        },
+        "min": -1,
+        "max": 1
+      }
+    },
+    "plugins": {
+      "legend": {
+        "display": true
+      },
+      "tooltip": {
+        "enabled": true
+      }
+    }
+  },
+  "dynamicData": {
+    "generate": {
+      "thetaStart": 0,
+      "thetaEnd": 6.28318530718,
+      "steps": 10000,
+      "rFunction": "Math.sin(5702887 * theta)"
+    }
+  }
+}
