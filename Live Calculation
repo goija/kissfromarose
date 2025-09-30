@@ -1,0 +1,40 @@
+from astropy.coordinates import EarthLocation, AltAz, get_sun
+from astropy.time import Time
+import astropy.units as u
+
+def calculate_solar_and_shadow_azimuth(latitude, longitude, elevation_m, time_str):
+    """
+    Calculates the Sun's azimuth/altitude and the resulting shadow azimuth.
+
+    :param latitude: Latitude in degrees (e.g., 51.4283).
+    :param longitude: Longitude in degrees (e.g., -1.8533).
+    :param elevation_m: Elevation above sea level in meters (e.g., 150).
+    :param time_str: Time string in ISO format (e.g., '2025-09-30T12:00:00').
+    :return: Dictionary with calculated values.
+    """
+    location = EarthLocation(lat=latitude*u.deg, lon=longitude*u.deg, height=elevation_m*u.m)
+    time = Time(time_str)
+
+    sun = get_sun(time)
+    altaz = sun.transform_to(AltAz(obstime=time, location=location))
+
+    sun_az = altaz.az.deg
+    sun_alt = altaz.alt.deg
+    
+    # Shadow azimuth is always 180 degrees opposite the sun's azimuth
+    shadow_az = (sun_az + 180) % 360
+
+    return {
+        "Sun Azimuth": round(sun_az, 2),
+        "Sun Altitude": round(sun_alt, 2),
+        "Shadow Azimuth": round(shadow_az, 2)
+    }
+
+# Example usage (Your original Avebury parameters)
+results = calculate_solar_and_shadow_azimuth(
+    latitude=51.4283, 
+    longitude=-1.8533, 
+    elevation_m=150, 
+    time_str='2025-09-30T12:00:00'
+)
+print(results)
